@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import testClases.CrearProductoCase;
 
 import static conexion.DriverContext.setUp;
+import static reports.Reports.finalAssert;
 
 public class RegistroDeProductos {
     @BeforeMethod
@@ -20,8 +21,9 @@ public class RegistroDeProductos {
     }
 
     @Test
-    public void agregarCliente() {
+    public void agregarProducto() {
         CrearProductoCase test = new CrearProductoCase();
         test.flujo();
+        finalAssert();
     }
 }

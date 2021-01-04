@@ -3,7 +3,6 @@ package pages;
 import conexion.DriverContext;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.qameta.allure.model.Status;
@@ -12,9 +11,6 @@ import static reports.Reports.addStep;
 import static utils.Utils.*;
 
 public class CarruselPage {
-    //TITULO
-
-    //VALIDA TITULO
     private AppiumDriver driver;
 
     public CarruselPage() {
@@ -56,7 +52,9 @@ public class CarruselPage {
     }
 
     public void tapBtnHecho() {
+        esperarObjeto(btnPermitir,5);
         btnPermitir.click();
+        esperarObjeto(btnHecho, 5);
         btnHecho.click();
     }
 

@@ -19,7 +19,7 @@ public class CrearProductoPage {
     }
 
     //Elementos
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "//android.widget.TextView[contains(@text, 'Crear Producto')]")
     private MobileElement tituloVistaCrearProducto;
 
     @AndroidFindBy(id = "com.rodrigo.registro:id/nombre_producto")

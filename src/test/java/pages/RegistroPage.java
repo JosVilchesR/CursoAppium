@@ -6,7 +6,6 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.qameta.allure.model.Status;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class RegistroPage {
     @AndroidFindBy(xpath = "//*[contains(@text,\"Registro\")]")
     private MobileElement tituloVistaRegistro;
 
-    @AndroidFindBy(id = "com.rodrigo.registro:id/fab_expand_menu_button\n")
+    @AndroidFindBy(id = "com.rodrigo.registro:id/fab_expand_menu_button")
     private MobileElement btnMas;
 
     @AndroidFindBy(id = "com.rodrigo.registro:id/action_cliente")
