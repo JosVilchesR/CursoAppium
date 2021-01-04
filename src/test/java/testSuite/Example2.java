@@ -11,6 +11,7 @@ import testClases.TestCarrusel;
 
 import static conexion.DriverContext.setUp;
 import static reports.Reports.addStep;
+import static reports.Reports.finalAssert;
 
 public class Example2 {
     @BeforeMethod
@@ -35,5 +36,6 @@ public class Example2 {
     public void testCarrusel() {
         TestCarrusel test = new TestCarrusel();
         test.validaciones();
+        finalAssert();
     }
 }

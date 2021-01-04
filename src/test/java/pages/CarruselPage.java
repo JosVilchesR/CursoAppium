@@ -38,6 +38,28 @@ public class CarruselPage {
     @AndroidFindBy(id = "com.rodrigo.registro:id/next")
     private MobileElement btnFlecha;
 
+    //popUp Android
+    @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
+    private MobileElement btnPermitir;
+
+    @AndroidFindBy(id = "com.rodrigo.registro:id/done")
+    private MobileElement btnHecho;
+
+    public void recorrerCarrusel() {
+        System.out.println("[CarruselPage] recorrerCarrusel");
+        int cont = 0;
+        do {
+            cont++;
+            btnFlecha.click();
+        } while(cont < 3);
+
+    }
+
+    public void tapBtnHecho() {
+        btnPermitir.click();
+        btnHecho.click();
+    }
+
     public void validarVistaDesplegada() {
         if (iconoVista1.isDisplayed()) {
             addStep("Validar vista 1 de carrusel", true, Status.PASSED, false);
