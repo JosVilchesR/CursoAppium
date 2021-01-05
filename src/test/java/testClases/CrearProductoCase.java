@@ -9,13 +9,12 @@ public class CrearProductoCase {
     RegistroPage registroPage = new RegistroPage();
     CrearProductoPage crearProductoPage = new CrearProductoPage();
 
-    String nombreProducto = "Fertilizante";
+    String nombreProducto = "Fert11";
     String precioProducto = "7500";
 
     public void flujo() {
         carruselPage.validarVistaDesplegada();
         carruselPage.recorrerCarrusel();
-        //falta...
         carruselPage.tapBtnHecho();
 
         registroPage.validarVistaDesplegada();
@@ -28,6 +27,7 @@ public class CrearProductoCase {
 
         registroPage.validarVistaDesplegada();
         registroPage.ingresarTabProductos();
-        registroPage.validarProducto("Fertilizante", "7500");
+        registroPage.validarVistaDesplegada();
+        registroPage.validarProducto("Fert11", "7500");
     }
 }

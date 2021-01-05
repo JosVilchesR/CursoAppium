@@ -9,6 +9,7 @@ import io.qameta.allure.model.Status;
 import org.openqa.selenium.support.PageFactory;
 
 import static reports.Reports.addStep;
+import static utils.Utils.espera;
 import static utils.Utils.esperarObjeto;
 
 public class CrearProductoPage {
@@ -19,7 +20,7 @@ public class CrearProductoPage {
     }
 
     //Elementos
-    @AndroidFindBy(id = "//android.widget.TextView[contains(@text, 'Crear Producto')]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text, 'Crear Producto')]")
     private MobileElement tituloVistaCrearProducto;
 
     @AndroidFindBy(id = "com.rodrigo.registro:id/nombre_producto")
@@ -33,7 +34,8 @@ public class CrearProductoPage {
 
     //Métodos
     public void validarVistaDesplegada() {
-        if (esperarObjeto(tituloVistaCrearProducto, 5)) {
+        espera(3);
+        if (esperarObjeto(tituloVistaCrearProducto, 15)) {
             addStep("Validar Vista Crear Producto Desplegada", true, Status.PASSED, false);
         } else {
             addStep("Error, validar Vista Crear Producto Desplegada", true, Status.FAILED, true);
@@ -41,15 +43,21 @@ public class CrearProductoPage {
     }
 
     public void completarFormulario(String nombreProducto, String precioProducto) {
+        System.out.println("[Crear Producto] completar formulario");
         txtNombreProducto.setValue(nombreProducto);
         this.driver.hideKeyboard();
         txtPrecioProducto.click();
         txtPrecioProducto.setValue(precioProducto);
         this.driver.hideKeyboard();
-
+        addStep("Completar formulario para Crear Producto", true, Status.PASSED, false);
     }
 
     public void tapConfirmar() {
-        btnConfirmar.click();
+        if (esperarObjeto(btnConfirmar, 3)) {
+            btnConfirmar.click();
+            addStep("Se hace tap en 'Boton Confirmar'", false, Status.PASSED, false);
+        } else {
+            addStep("Error, no se encuentra 'Botón Guardar'", true, Status.FAILED, true);
+        }
     }
 }

@@ -3,8 +3,10 @@ package utils;
 import conexion.DriverContext;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,6 +26,15 @@ public class Utils {
         }
     }
 
+    public static void espera(long segundos) {
+        try {
+            System.out.println("Esperamos " + segundos + " segundos");
+            Thread.sleep(segundos * 1000L);
+        } catch (InterruptedException e) {
+            System.out.println("Error en la espera: " + e.getMessage());
+        }
+    }
+
     public static void swipeAbajo() {
         int ancho = (int) (DriverContext.getDriver().manage().window().getSize().width * 0.08D);
         int startPoint = (int) (DriverContext.getDriver().manage().window().getSize().height * 0.9D);
@@ -33,6 +44,14 @@ public class Utils {
         TouchAction touchAction = new TouchAction(DriverContext.getDriver());
         touchAction.press(PointOption.point(ancho,startPoint)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500L))).moveTo(PointOption.point(ancho, endPoint)).release().perform();
         System.out.println("[Utils] Swipe hacia Abajo");
+    }
+
+    public static void swipeAbajoHastaEncontrarObj(String locator) {
+        MobileElement elemento;
+        do {
+            elemento = (MobileElement) DriverContext.getDriver().findElement(By.id(locator));
+            swipeAbajo();
+        } while (!elemento.isDisplayed());
     }
 
 

@@ -9,8 +9,8 @@ public class AgregarClienteCase {
     RegistroPage registroPage = new RegistroPage();
     CrearClientePage crearClientePage = new CrearClientePage();
 
-    String nombre = "Jo";
-    String id = "1234";
+    String nombre = "Joss";
+    String id = "123334";
     String fono = "12345678";
     String dir = "calle 1";
     String notas = "Sin notas";
@@ -18,7 +18,6 @@ public class AgregarClienteCase {
     public void flujo() {
         carruselPage.validarVistaDesplegada();
         carruselPage.recorrerCarrusel();
-        //falta...
         carruselPage.tapBtnHecho();
 
         registroPage.validarVistaDesplegada();
@@ -30,6 +29,6 @@ public class AgregarClienteCase {
         crearClientePage.tapGuardar();
 
         registroPage.validarVistaDesplegada();
-        registroPage.validarCliente("Jo");
+        registroPage.validarCliente("Joss");
     }
 }

@@ -20,6 +20,7 @@ public class RegistroPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
+    // Elementos
     @AndroidFindBy(xpath = "//*[contains(@text,\"Registro\")]")
     private MobileElement tituloVistaRegistro;
 
@@ -41,17 +42,12 @@ public class RegistroPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text, 'PRODUCTOS')]")
     private MobileElement tabProductos;
 
-    @AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id=\"com.rodrigo.registro:id/bg\"]")
-    private List<MobileElement> filasProductos;
+    @AndroidFindBy(id = "com.rodrigo.registro:id/nombre_producto")
+    private List<MobileElement> nombresProductos;
 
-    @AndroidFindBy(id = "")
-    private List<MobileElement> precioProducto;
-
-    @AndroidFindBy(xpath = "")
-    private List<MobileElement> nombreProducto;
-
+    //Métodos
     public void validarVistaDesplegada() {
-        if (esperarObjeto(tituloVistaRegistro, 5)) {
+        if (esperarObjeto(tituloVistaRegistro, 10)) {
             addStep("Validar Vista Registro Desplegada", true, Status.PASSED, false);
         } else {
             addStep("Error, validar Vista Registro Desplegado", true, Status.FAILED, true);
@@ -59,9 +55,15 @@ public class RegistroPage {
     }
 
     public void tapBtnMas() {
-        if (esperarObjeto(btnMas, 3)) {
+        if (esperarObjeto(btnMas, 5)) {
             addStep("Tap al botón '+'", false, Status.PASSED, false);
             btnMas.click();
+
+            if (esperarObjeto(btnCrearCliente, 5) && (esperarObjeto(btnCrearProducto, 5))) {
+                addStep("Se encuentran botones 'Crear Cliente' y 'Crear Producto'", true, Status.PASSED, false);
+            } else {
+                addStep("Error, los botones 'Crear Cliente' y 'Crear Producto' no se encuentran", true, Status.FAILED, true);
+            }
         } else {
             addStep("Error, el botón '+' no se encuentra", true, Status.FAILED, true);
         }
@@ -97,7 +99,7 @@ public class RegistroPage {
     public void ingresarTabProductos() {
         if (esperarObjeto(tabProductos, 5)) {
             addStep("Tap a la Tab 'PRODUCTOS'", false, Status.PASSED, false);
-            tabClientes.click();
+            tabProductos.click();
         } else {
             addStep("Error el Tab'PRODUCTOS' no se encuentra", true, Status.FAILED, true);
         }
@@ -107,53 +109,64 @@ public class RegistroPage {
     public void validarProducto(String nombreProducto, String precioProducto) {
         System.out.println("[RegistroProducto] validar Producto");
         boolean productoEncontrado = false;
-        for (int i = 0; i <= filasProductos.size() ; i++) {
-            String nombreProductoActual = filasProductos.get(i).getText();
-            System.out.println("dentro de fila: " + nombreProducto);
-
+        if (nombresProductos.size() != 0) {
+            for (int i = 0; i <= nombresProductos.size(); i++) {
+                String nombreProductoActual = nombresProductos.get(i).getText();
+                System.out.println("dentro de fila: " + nombreProductoActual);
+                if (nombreProductoActual.equals(nombreProducto)) {
+                    productoEncontrado = true;
+                    System.out.println("Encontre el producto");
+                    i = nombresProductos.size();
+                    addStep("Se encuentra producto " + nombreProducto, true, Status.PASSED, false);
+                }
+            }
+        } else {
+            addStep("Error, el producto" + nombreProducto + " no se encuentra", true, Status.FAILED, true);
         }
     }
 
     public void validarCliente(String nombreCliente) {
         System.out.println("[RegistroCliente] validar Cliente");
         boolean clienteEncontrado = false;
-        for (int i = 0; i <= labelsClientes.size(); i++) {
-            String nombreClienteActual = labelsClientes.get(i).getText();
-            if (nombreClienteActual.equals(nombreCliente)) {
-                clienteEncontrado = true;
-                //falta addStep
+        if (labelsClientes.size() != 0) {
+            for (int i = 0; i <= labelsClientes.size(); i++) {
+                String nombreClienteActual = labelsClientes.get(i).getText();
+                if (nombreClienteActual.equals(nombreCliente)) {
+                    clienteEncontrado = true;
+                    i = labelsClientes.size();
+                    addStep("Se encuentra cliente " + nombreCliente, true, Status.PASSED, false);
+                }
             }
+        } else {
+            addStep("Error, el cliente" + nombreCliente + " no se encuentra", true, Status.FAILED, true);
         }
-//        MobileElement cliente = (MobileElement) DriverContext.getDriver().findElement(By.xpath("//*[contains(@text,\"" + nombreCliente + "\")]"));
-////        if (cliente.getText().equals(nombreCliente)) {
-////            cliente.click();
-////            addStep("Cliente: " + nombreCliente + "encontrado", true, Status.PASSED, false );
-////        } else {
-////            addStep("Error, Cliente: " + nombreCliente + "no encontrado", true, Status.FAILED, true);
-////        }
-
     }
 
     public void validarClienteEliminado(String nombreCliente) {
         System.out.println("[RegistroCliente] validar Cliente");
         boolean clienteEncontrado = true;
-        for (int i = 0; i <= labelsClientes.size(); i++) {
-            String nombreClienteActual = labelsClientes.get(i).getText();
-            if (nombreClienteActual.equals(nombreCliente)) {
-                clienteEncontrado = false;
-                //falta addStep
+        if (labelsClientes.size() != 0) {
+            for (int i = 0; i <= labelsClientes.size(); i++) {
+                String nombreClienteActual = labelsClientes.get(i).getText();
+                if (nombreClienteActual.equals(nombreCliente)) {
+                    clienteEncontrado = false;
+                    i = labelsClientes.size();
+                    addStep("No se encuentra cliente " + nombreCliente, true, Status.PASSED, false);
+                }
             }
+        } else {
+            addStep("Error, el cliente" + nombreCliente + " se encuentra en el listado", true, Status.FAILED, true);
         }
     }
 
     public void seleccionarCliente(String nombreCliente) {
-        //this.validarCliente(nombreCliente); hacer que retorne un booleano
         System.out.println("[RegistroCliente] Seleccionar Cliente");
         for (int i = 0; i <= labelsClientes.size(); i++) {
             String nombreClienteActual = labelsClientes.get(i).getText();
             if (nombreClienteActual.equals(nombreCliente)) {
                 labelsClientes.get(i).click();
-                //falta addStep
+                i = labelsClientes.size();
+                addStep("Se encuentra y selecciona cliente " + nombreCliente, false, Status.PASSED, false);
             }
         }
     }

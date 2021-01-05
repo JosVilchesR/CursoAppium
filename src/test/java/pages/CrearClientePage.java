@@ -9,6 +9,7 @@ import io.qameta.allure.model.Status;
 import org.openqa.selenium.support.PageFactory;
 
 import static reports.Reports.addStep;
+import static utils.Utils.espera;
 import static utils.Utils.esperarObjeto;
 
 public class CrearClientePage {
@@ -42,7 +43,8 @@ public class CrearClientePage {
     private MobileElement btnGuardar;
 
     public void validarVistaDesplegada() {
-        if (esperarObjeto(tituloVistaCrearCliente, 5)) {
+        espera(3);
+        if (esperarObjeto(tituloVistaCrearCliente, 10)) {
             addStep("Validar Vista Crear Cliente", true, Status.PASSED, false);
         } else {
             addStep("Error, validar Vista Crear Cliente", true, Status.FAILED, true);
@@ -51,6 +53,7 @@ public class CrearClientePage {
 
     public void completarFormulario(String name, String id, String fono, String dir, String notas) {
         System.out.println("[Crear Cliente] completar formulario");
+        espera(3);
         txtNombre.setValue(name);
         this.driver.hideKeyboard(); //sirve para bajar teclado
         txtId.click();
@@ -69,8 +72,12 @@ public class CrearClientePage {
     }
 
     public void tapGuardar() {
-        //quizás en mi celular necesito hacer un swipe hacia abajo para ver este boton
-        btnGuardar.click();
+        if (esperarObjeto(btnGuardar, 3)) {
+            btnGuardar.click();
+            addStep("Se hace tap en 'Botón Guardar'", false, Status.PASSED, false);
+        } else {
+            addStep("Error, no se encuentra 'Botón Guardar'", true, Status.FAILED, true);
+        }
     }
 }
 

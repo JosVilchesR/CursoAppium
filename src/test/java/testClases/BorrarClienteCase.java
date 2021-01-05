@@ -11,8 +11,8 @@ public class BorrarClienteCase {
     CrearClientePage crearClientePage = new CrearClientePage();
     DetalleClientePage detalleClientePage = new DetalleClientePage();
 
-    String nombre = "Josefa";
-    String id = "123456";
+    String nombre = "Joji";
+    String id = "17";
     String fono = "121212";
     String dir = "calle 2";
     String notas = "Sin notas";
@@ -20,7 +20,6 @@ public class BorrarClienteCase {
     public void flujo() {
         carruselPage.validarVistaDesplegada();
         carruselPage.recorrerCarrusel();
-        //falta...
         carruselPage.tapBtnHecho();
 
         registroPage.validarVistaDesplegada();
@@ -32,13 +31,13 @@ public class BorrarClienteCase {
         crearClientePage.tapGuardar();
 
         registroPage.validarVistaDesplegada();
-        registroPage.validarCliente("Josefa");
-        registroPage.seleccionarCliente("Josefa");
+        registroPage.validarCliente("Joji");
+        registroPage.seleccionarCliente("Joji");
 
-        detalleClientePage.validarVistaDetalleCliente("Josefa");
+        detalleClientePage.validarVistaDetalleCliente("Joji");
         detalleClientePage.eliminarCliente();
         registroPage.validarVistaDesplegada();
         //registroPage.ingresarTabClientes();
-        registroPage.validarClienteEliminado("Josefa");
+        registroPage.validarClienteEliminado("Joji");
     }
 }
