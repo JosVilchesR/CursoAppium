@@ -34,9 +34,13 @@ public class CarruselPage {
     @AndroidFindBy(id = "com.rodrigo.registro:id/next")
     private MobileElement btnFlecha;
 
-    //popUp Android
+    //popUp Android celular xperia z2
     @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
     private MobileElement btnPermitir;
+
+    //popUp Android Pixel XL
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private MobileElement getBtnPermitirPixel;
 
     @AndroidFindBy(id = "com.rodrigo.registro:id/done")
     private MobileElement btnHecho;
@@ -52,8 +56,14 @@ public class CarruselPage {
     }
 
     public void tapBtnHecho() {
-        esperarObjeto(btnPermitir,5);
-        btnPermitir.click();
+        if (esperarObjeto(btnPermitir, 5)) {
+            btnPermitir.click();
+        } else {
+            getBtnPermitirPixel.click();
+        }
+
+//        esperarObjeto(btnPermitir,5);
+//        btnPermitir.click();
         esperarObjeto(btnHecho, 5);
         btnHecho.click();
     }
