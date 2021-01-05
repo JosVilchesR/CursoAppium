@@ -43,9 +43,13 @@ public class DetalleClientePage {
     }
 
     public void eliminarCliente() {
-        //swipeAbajoHastaEncontrarObj("com.rodrigo.registro:id/eliminar_cliente");
-        swipeAbajo();
-        swipeAbajo();
+        System.out.println("Método eliminarCliente");
+        int cont = 0;
+        do {
+            cont++;
+            swipeAbajo();
+        } while(cont < 2);
+
         espera(3);
         btnEliminarCliente.click();
         txtBorrar.setValue("BORRAR");

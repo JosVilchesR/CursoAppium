@@ -46,13 +46,4 @@ public class Utils {
         System.out.println("[Utils] Swipe hacia Abajo");
     }
 
-    public static void swipeAbajoHastaEncontrarObj(String locator) {
-        MobileElement elemento;
-        do {
-            elemento = (MobileElement) DriverContext.getDriver().findElement(By.id(locator));
-            swipeAbajo();
-        } while (!elemento.isDisplayed());
-    }
-
-
 }
