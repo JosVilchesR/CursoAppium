@@ -22,7 +22,7 @@ public class RegistroDeUsuarios {
         DriverContext.quitDriver();
     }
 
-    @Test
+    @Test(description = "Agregar Cliente")
     public void agregarCliente() {
         AgregarClienteCase test = new AgregarClienteCase();
         test.flujo();

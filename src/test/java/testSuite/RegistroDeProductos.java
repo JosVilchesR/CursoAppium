@@ -20,7 +20,7 @@ public class RegistroDeProductos {
         DriverContext.quitDriver();
     }
 
-    @Test
+    @Test(description = "Crear un Producto")
     public void agregarProducto() {
         CrearProductoCase test = new CrearProductoCase();
         test.flujo();
