@@ -11,7 +11,7 @@ public class BorrarClienteCase {
     CrearClientePage crearClientePage = new CrearClientePage();
     DetalleClientePage detalleClientePage = new DetalleClientePage();
 
-    String nombre = "Joji";
+    String nombre = "JBV";
     String id = "17";
     String fono = "121212";
     String dir = "calle 2";
@@ -31,13 +31,13 @@ public class BorrarClienteCase {
         crearClientePage.tapGuardar();
 
         registroPage.validarVistaDesplegada();
-        registroPage.validarCliente("Joji");
-        registroPage.seleccionarCliente("Joji");
+        registroPage.validarCliente("JBV");
+        registroPage.seleccionarCliente("JBV");
 
-        detalleClientePage.validarVistaDetalleCliente("Joji");
+        detalleClientePage.validarVistaDetalleCliente("JBV");
         detalleClientePage.eliminarCliente();
         registroPage.validarVistaDesplegada();
         //registroPage.ingresarTabClientes();
-        registroPage.validarClienteEliminado("Joji");
+        registroPage.validarClienteEliminado("JBV");
     }
 }

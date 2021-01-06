@@ -166,7 +166,8 @@ public class RegistroPage {
             if (nombreClienteActual.equals(nombreCliente)) {
                 labelsClientes.get(i).click();
                 i = labelsClientes.size();
-                addStep("Se encuentra y selecciona cliente " + nombreCliente, false, Status.PASSED, false);
+                espera(3);
+                addStep("Se encuentra y selecciona cliente " + nombreCliente, true, Status.PASSED, false);
             }
         }
     }

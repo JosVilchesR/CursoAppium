@@ -9,7 +9,7 @@ import testClases.CrearProductoCase;
 import static conexion.DriverContext.setUp;
 import static reports.Reports.finalAssert;
 
-public class RegistroDeProductos {
+public class CrearProducto {
     @BeforeMethod
     public void iniciarSession() {
         setUp("emulador-5554", "Android", "C:\\Users\\exjvilr\\Downloads\\registroDeUsuarios.apk", "emulador-5554", true);

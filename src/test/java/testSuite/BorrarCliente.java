@@ -20,7 +20,7 @@ public class BorrarCliente {
         DriverContext.quitDriver();
     }
 
-    @Test(description = "Elimina un Cliente")
+    @Test(description = "Crea un cliente y luego lo Elimina")
     public void borrarCliente() {
        BorrarClienteCase test = new BorrarClienteCase();
         test.flujo();

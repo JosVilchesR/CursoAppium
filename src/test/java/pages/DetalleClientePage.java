@@ -50,9 +50,14 @@ public class DetalleClientePage {
             swipeAbajo();
         } while(cont < 2);
 
-        espera(3);
-        btnEliminarCliente.click();
-        txtBorrar.setValue("BORRAR");
-        btnBorrarOK.click();
+        if (esperarObjeto(btnEliminarCliente, 3)) {
+            btnEliminarCliente.click();
+            espera(3);
+            addStep("PopUp confirmación eliminación desplegado", true, Status.PASSED, false);
+            txtBorrar.setValue("BORRAR");
+            btnBorrarOK.click();
+        } else {
+            addStep("Error, no se encuentra PopUp confirmación eliminación", false, Status.FAILED, true);
+        }
     }
 }
